@@ -1,0 +1,63 @@
+.pagination_container {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav_icon {
+  font-weight: 600;
+  margin: 0 4px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.nav_icon:hover {
+  background-color: rgba(214, 213, 168, 0.3);
+}
+
+.page_number {
+  font-weight: 600;
+  margin: 0 4px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.page_number:hover {
+  background-color: rgba(214, 213, 168, 0.3);
+  font-weight: 900;
+}
+
+.current_page {
+  background-color: rgba(214, 213, 168, 0.3);
+  font-weight: 900;
+}
+
+.saperate_page_number {
+  display: flex;
+  justify-content: baseline;
+  align-items: baseline;
+}
+
+.nav_disable {
+  pointer-events: none;
+  opacity: 0.4;
+}
