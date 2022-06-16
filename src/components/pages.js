@@ -9,7 +9,8 @@ const PageNumbers = ({
   separator = "...",
   activePageNumberStyle,
   pageNumberStyle,
-  hoverPageNumberStyle
+  hoverPageNumberStyle,
+  showCorners = true
 }) => {
   const [pagesToDisplay, setPagesToDisplay] = useState([]);
   const [showStart, setShowStart] = useState(false);
@@ -49,7 +50,13 @@ const PageNumbers = ({
       setShowStart(true);
       setShowEnd(false);
     } else {
-      setPagesToDisplay([currentPage - 1, currentPage, currentPage + 1]);
+      setPagesToDisplay([
+        currentPage - 2,
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        currentPage + 2
+      ]);
       setShowStart(true);
       setShowEnd(true);
     }
@@ -99,9 +106,9 @@ const PageNumbers = ({
 
   return (
     <>
-      {startSide()}
+      {showCorners && startSide()}
       {center()}
-      {endSide()}
+      {showCorners && endSide()}
     </>
   );
 };

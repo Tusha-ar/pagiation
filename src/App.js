@@ -50,6 +50,7 @@ const App = () => {
             height: "30px",
             padding: "4px"
           }}
+          showCorners={false}
         >
           {(page, index) => (
             <Pagination.Page key={index}>
