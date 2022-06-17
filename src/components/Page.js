@@ -22,6 +22,26 @@ const Page = ({
   };
   if (typeof children === "string") {
     return children;
+  } else if (typeof children.type === "function") {
+    const temp = React.cloneElement(children, {
+      onMouseOver: handleHoverStart,
+      onMouseLeave: handleHoverEnd,
+      onClick: handleClick,
+      style: Object.assign(
+        {
+          margin: "10px",
+          cursor: "pointer",
+          userSelect: "none",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        },
+        active ? activePageNumberStyle : {},
+        pageNumberStyle,
+        hover ? hoverPageNumberStyle : {}
+      )
+    });
+    return temp;
   } else {
     return React.createElement(
       children.type || "div",

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Pagination from "./components";
 
+const CustomPage = ({ value, ...rest }) => {
+  return <span {...rest}>{value}</span>;
+};
+
 const App = () => {
   const totalData = 1000;
   const dataPerPage = 10;
@@ -50,11 +54,12 @@ const App = () => {
             height: "30px",
             padding: "4px"
           }}
-          showCorners={false}
+          // showCorners={false}
         >
           {(page, index) => (
             <Pagination.Page key={index}>
-              {page}
+              {/* {page} */}
+              <CustomPage value={page} />
               {/* <div style={page % 2 === 0 ? { color: "red" } : {}}>{page}</div> */}
             </Pagination.Page>
           )}
