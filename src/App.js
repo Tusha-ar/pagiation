@@ -54,13 +54,11 @@ const App = () => {
             height: "30px",
             padding: "4px"
           }}
-          // showCorners={false}
+          showCorners={true}
         >
           {(page, index) => (
             <Pagination.Page key={index}>
-              {/* {page} */}
               <CustomPage value={page} />
-              {/* <div style={page % 2 === 0 ? { color: "red" } : {}}>{page}</div> */}
             </Pagination.Page>
           )}
         </Pagination.Pages>

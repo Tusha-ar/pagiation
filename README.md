@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# EasyPagination
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
+EasyPagination library helps you to make fully dynamic pagination UI which you can design however you wish. It is very customisable and easy to use.
 
-In the project directory, you can run:
+# Usage
 
-### `npm start`
+### components:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Pagination.Container
+- Pagination.Pages
+- Pagination.Page
+- Pagination.NavigationStart
+- Pagination.NavigationPrev
+- Pagination.NavigationNext
+- Pagination.NavigationEnd
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### props:
 
-### `npm test`
+#### **Container :**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- totalData
+- dataPerPage
+- totalPages
+- currentPage
+- handleNavigation
+- navigationStyle
+- containerStyle
 
-### `npm run build`
+### **Pages :**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- separator
+- activePageNumberStyle
+- pageNumberStyle
+- hoverPageNumberStyle
+- showCorners
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **NavigationStart, NavigationPrev, NavigationNext, NavigationEnd :**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- style
 
-### `npm run eject`
+### Example:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Wrap everything inside Pagination.Container. You can use the navigation components anywhere you wish to display them inside the container. Inside Pagination.Pages you will receive a callback function with two args i.e. **pageNumber and index**.
+If you wish to use a custom component inside your Pagination.Pages callback then just receive the extra props in the customComponent and pass them to it's first element like shown below **after the 1st example.**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+<Pagination.Container
+        totalData={totalData}
+        dataPerPage={dataPerPage}
+        totalPages={totalData / dataPerPage}
+        currentPage={currentPage}
+        handleNavigation={handleNavigation}
+        navigationStyle={{ fontWeight: "700", margin: "10px" }}
+        containerStyle={{
+          border: "2px solid black",
+          padding: "10px",
+          margin: "20px",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Pagination.NavigationStart style={{ fontWeight: "700" }}>
+          {`|<`}
+        </Pagination.NavigationStart>
+        <Pagination.NavigationPrev
+          style={{ fontWeight: "700" }}
+        >{`<`}</Pagination.NavigationPrev>
+        <Pagination.Pages
+          separator=". . . ."
+          activePageNumberStyle={{
+            backgroundColor: "rgba(214, 213, 168, 0.6)"
+          }}
+          hoverPageNumberStyle={{
+            backgroundColor: "rgba(214, 213, 168, 0.6)"
+          }}
+          pageNumberStyle={{
+            fontWeight: "800",
+            borderRadius: "100%",
+            width: "30px",
+            height: "30px",
+            padding: "4px"
+          }}
+          showCorners={true}
+        >
+          {(pageNumber, index) => (
+            <Pagination.Page key={index}>
+              {pageNumber}
+            </Pagination.Page>
+          )}
+        </Pagination.Pages>
+        <Pagination.NavigationNext
+          style={{ fontWeight: "700" }}
+        >{`>`}</Pagination.NavigationNext>
+        <Pagination.NavigationEnd
+          style={{ fontWeight: "700" }}
+        >{`>|`}</Pagination.NavigationEnd>
+      </Pagination.Container>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+const CustomPage = ({ value, ...rest }) => {
+  return <span {...rest}>{value}</span>;
+};
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<Pagination.Pages
+          separator=". . . ."
+          activePageNumberStyle={{
+            backgroundColor: "rgba(214, 213, 168, 0.6)"
+          }}
+          hoverPageNumberStyle={{
+            backgroundColor: "rgba(214, 213, 168, 0.6)"
+          }}
+          pageNumberStyle={{
+            fontWeight: "800",
+            borderRadius: "100%",
+            width: "30px",
+            height: "30px",
+            padding: "4px"
+          }}
+          showCorners={true}
+        >
+          {(pageNumber, index) => (
+            <Pagination.Page key={index}>
+              <CustomPage value={pageNumber} />
+            </Pagination.Page>
+          )}
+        </Pagination.Pages>
+```
